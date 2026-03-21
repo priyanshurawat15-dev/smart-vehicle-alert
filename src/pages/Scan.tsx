@@ -129,7 +129,7 @@ export default function Scan() {
               <Car className="w-6 h-6 text-slate-700" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold text-slate-800">Vehicle Found</h2>
+              <h2 className="text-xl font-semibold text-slate-800">Vehicle Found 🌋</h2>
               <p className="text-sm text-slate-600">How can we help today?</p>
             </div>
           </div>
