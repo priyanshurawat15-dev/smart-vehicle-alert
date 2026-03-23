@@ -8,8 +8,7 @@ export default function BottomNav() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-        <div className="absolute bottom-0 left-0 w-full border-t border-gray-200 bg-white flex justify-around py-3">
-
+    <div className="fixed bottom-0 left-0 w-full bg-white border-t flex justify-around py-2">
       {/* HOME */}
       <button
         onClick={() => navigate("/")}
@@ -23,9 +22,9 @@ export default function BottomNav() {
 
       {/* SCAN */}
       <button
-        onClick={() => navigate("/scan/demo")}
+        onClick={() => navigate("/scanner")}
         className={`flex flex-col items-center text-xs ${
-          location.pathname.includes("/scan")
+          location.pathname.includes("/scanner")
             ? "text-red-500"
             : "text-gray-400"
         }`}

@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { Html5Qrcode } from "html5-qrcode";
+import { useNavigate } from "react-router-dom";
+
 
 const Scanner = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     console.log("Scanner mounted");
 
@@ -15,7 +18,7 @@ const Scanner = () => {
           qrbox: { width: 250, height: 250 },
         },
         (decodedText) => {
-          console.log("Scanned:", decodedText);
+          navigate(`/scan/${decodedText}`);
         },
         (error) => {
           console.log("Scan error:", error);
@@ -27,7 +30,9 @@ const Scanner = () => {
       });
 
     return () => {
-      html5QrCode.stop().catch(() => {});
+       if (html5QrCode && html5QrCode.isScanning) {
+    html5QrCode.stop().catch(() => {});
+       }
     };
   }, []);
 

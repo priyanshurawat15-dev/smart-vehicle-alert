@@ -3,6 +3,9 @@ import { supabase } from '../lib/supabase';
 import { generateUniqueCode, getQRCodeUrl, getScanUrl } from '../utils/qrcode';
 import { Download, Plus, Trash2, CheckCircle } from 'lucide-react';
 
+import { useNavigate } from "react-router-dom";
+
+
 interface EmergencyContactForm {
   contact_name: string;
   contact_phone: string;
@@ -12,6 +15,7 @@ interface EmergencyContactForm {
 }
 
 export default function Register() {
+  const navigate = useNavigate();
   const [vehicleNumber, setVehicleNumber] = useState('');
   const [ownerName, setOwnerName] = useState('');
   const [ownerEmail, setOwnerEmail] = useState('');
@@ -74,7 +78,28 @@ export default function Register() {
         .select()
         .single();
 
-      if (vehicleError) throw vehicleError;
+      if (vehicleError) {
+  // 🔥 duplicate vehicle case
+  if (vehicleError.message.includes("duplicate")) {
+    alert("🚗 Vehicle already registered!");
+
+    // 👉 existing vehicle fetch karo
+    const { data: existing } = await supabase
+      .from("vehicles")
+      .select("*")
+      .eq("vehicle_number", vehicleNumber.trim())
+      .single();
+
+    if (existing) {
+      // 👉 redirect karo scan page pe
+      navigate(`/scan/${existing.qr_code}`);
+    }
+
+    return;
+  }
+
+  throw vehicleError;
+}
 
       const contactsToInsert = validContacts.map(contact => ({
         vehicle_id: vehicle.id,

@@ -31,9 +31,8 @@ function App() {
             
             <Route path="/scanner" element={<Scanner />} />
           </Routes>
-
-<BottomNav />
         </div>
+        <BottomNav />
       </div>
 
     </BrowserRouter>
