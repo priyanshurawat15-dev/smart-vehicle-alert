@@ -43,7 +43,7 @@ export default function Home() {
       </p>
 
       <button
-        onClick={() => navigate("/scan/demo")}
+        onClick={() => navigate("/scanner")}
         className="mt-2 bg-red-500 text-white px-4 py-1 rounded-full text-sm"
       >
         Scan Now
