@@ -7,6 +7,8 @@ import ParkingAlert from './pages/ParkingAlert';
 import Emergency from './pages/Emergency';
 import Incident from './pages/Incident';
 
+import Scanner from "./pages/Scanner";
+
 import BottomNav from "./components/BottomNav";
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             <Route path="/alert/:vehicleId" element={<ParkingAlert />} />
             <Route path="/emergency/:vehicleId" element={<Emergency />} />
             <Route path="/incident/:vehicleId" element={<Incident />} />
+            
+            <Route path="/scanner" element={<Scanner />} />
           </Routes>
 
 <BottomNav />
