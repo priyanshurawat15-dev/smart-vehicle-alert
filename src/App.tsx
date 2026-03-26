@@ -11,6 +11,8 @@ import Scanner from "./pages/Scanner";
 
 import BottomNav from "./components/BottomNav";
 
+import Profile from "./pages/Profile";
+
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +32,8 @@ function App() {
             <Route path="/incident/:vehicleId" element={<Incident />} />
             
             <Route path="/scanner" element={<Scanner />} />
+
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
         <BottomNav />

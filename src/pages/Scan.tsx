@@ -6,7 +6,6 @@ import { Car, AlertTriangle, Loader2 } from 'lucide-react';
 
 
 export default function Scan() {
-  const [isScanning, setIsScanning] = useState(true);
 
   const { qrCode } = useParams<{ qrCode: string }>();
   const navigate = useNavigate();
@@ -42,51 +41,11 @@ export default function Scan() {
       } finally {
         setLoading(false);
       }
-
-      setTimeout(() => {
-      setIsScanning(false);
-      }, 2000);
     };
 
     fetchVehicle();
   }, [qrCode]);
 
-
-  if (isScanning) {
-  return (
-    <div className="bg-black text-white h-full flex flex-col justify-between p-6">
-
-      <div className="text-center mt-6">
-        <p className="text-lg font-medium">Scanning...</p>
-        <p className="text-sm text-gray-400">
-          Point your camera at the vehicle QR code
-        </p>
-      </div>
-
-      <div className="flex-1 flex items-center justify-center">
-        <div className="w-64 h-64 border-4 border-white rounded-xl flex items-center justify-center">
-          <span className="text-gray-400">QR Area</span>
-        </div>
-      </div>
-
-      <div className="flex justify-around mb-6 text-sm">
-        <button className="text-gray-300">⚡ Flash</button>
-
-        <button className="bg-red-500 px-6 py-2 rounded-full">
-          Capture
-        </button>
-
-        <button
-          onClick={() => navigate("/")}
-          className="text-gray-300"
-        >
-          Cancel
-        </button>
-      </div>
-
-    </div>
-  );
-}
 
 
   if (loading) {

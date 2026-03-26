@@ -15,6 +15,7 @@ interface EmergencyContactForm {
 }
 
 export default function Register() {
+
   const navigate = useNavigate();
   const [vehicleNumber, setVehicleNumber] = useState('');
   const [ownerName, setOwnerName] = useState('');
@@ -24,7 +25,7 @@ export default function Register() {
   ]);
   const [loading, setLoading] = useState(false);
   const [qrCode, setQrCode] = useState<string | null>(null);
-  const [vehicleId, setVehicleId] = useState<string | null>(null);
+  const [, setVehicleId] = useState<string | null>(null);
 
   const addEmergencyContact = () => {
     setEmergencyContacts([
@@ -46,6 +47,7 @@ export default function Register() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+      const user = (await supabase.auth.getUser()).data.user;
     e.preventDefault();
 
     if (!vehicleNumber.trim()) {
@@ -70,10 +72,13 @@ export default function Register() {
       const { data: vehicle, error: vehicleError } = await supabase
         .from('vehicles')
         .insert({
+
           qr_code: uniqueQrCode,
           vehicle_number: vehicleNumber.trim(),
           owner_name: ownerName.trim() || null,
-          owner_email: ownerEmail.trim() || null
+          owner_email: ownerEmail.trim() || null,
+          
+          user_id: user?.id,
         })
         .select()
         .single();
