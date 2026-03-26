@@ -12,6 +12,7 @@ import Scanner from "./pages/Scanner";
 import BottomNav from "./components/BottomNav";
 
 import Profile from "./pages/Profile";
+import Auth from "./pages/Auth";
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
             <Route path="/scanner" element={<Scanner />} />
 
             <Route path="/profile" element={<Profile />} />
+
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </div>
         <BottomNav />

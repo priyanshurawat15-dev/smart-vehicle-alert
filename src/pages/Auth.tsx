@@ -11,8 +11,12 @@ export default function Auth() {
       password,
     });
 
-    if (error) alert(error.message);
-    else alert("Login success 🔥");
+    if (error) {
+  alert(error.message);
+} else {
+  alert("Login success 🔥");
+  window.location.href = "/profile";
+}
   };
 
   const handleSignup = async () => {

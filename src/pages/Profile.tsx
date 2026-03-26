@@ -15,6 +15,8 @@ export default function Profile() {
       const { data: userData } = await supabase.auth.getUser();
       const currentUser = userData.user;
 
+      console.log("USER:", currentUser);
+
       if (!currentUser) {
   setLoading(false);
   return;
@@ -30,12 +32,12 @@ export default function Profile() {
 if (error) {
   console.log("PROFILE ERROR:", error);
 }
-if (!profileData || Object.keys(profileData).length === 0) {
-
+if (!profileData)
+   {
 
     const { error: insertError } = await supabase
   .from("profiles")
-  .insert({
+  .upsert({
     id: currentUser.id,
     name: "New User",
     phone: "",
@@ -68,6 +70,20 @@ if (insertError) {
   }, []);
 
   if (loading) return <p className="p-4">Loading...</p>;
+
+  if (!user && !loading) {
+  return (
+    <div className="p-4 text-center">
+      <p>Please login first</p>
+      <button
+        onClick={() => (window.location.href = "/auth")}
+        className="bg-blue-500 text-white p-2 mt-2"
+      >
+        Go to Login
+      </button>
+    </div>
+  );
+}
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
