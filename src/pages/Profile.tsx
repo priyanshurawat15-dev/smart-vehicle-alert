@@ -109,42 +109,37 @@ export default function Profile() {
       {/* SETTINGS */}
       <div className="bg-white rounded-2xl shadow divide-y">
         <div className="p-4 flex justify-between">
-          <span>📱 My QR Code</span>
+          <span> My QR Code</span>
           <span>›</span>
         </div>
 
         <div className="p-4 flex justify-between">
-          <span>📄 Documents</span>
+          <span> Documents</span>
           <span>›</span>
         </div>
 
         <div className="p-4 flex justify-between">
-          <span>🔔 Manage Notifications</span>
+          <span> Manage Notifications</span>
           <span>›</span>
         </div>
 
         <div className="p-4 flex justify-between">
-          <span>🚨 Emergency Info</span>
+          <span> Emergency Info</span>
           <span>›</span>
         </div>
 
         <div className="p-4 flex justify-between">
-          <span>🔑 Change Password</span>
+          <span> Change Password</span>
           <span>›</span>
         </div>
 
         <div className="p-4 flex justify-between">
-          <span>❓ Help</span>
+          <span> Help & Support</span>
           <span>›</span>
         </div>
 
         <div className="p-4 flex justify-between">
-          <span>💬 Support</span>
-          <span>›</span>
-        </div>
-
-        <div className="p-4 flex justify-between">
-          <span>🔒 Security Settings</span>
+          <span> Support</span>
           <span>›</span>
         </div>
 
