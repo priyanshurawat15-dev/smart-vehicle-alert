@@ -49,6 +49,12 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const user = (await supabase.auth.getUser()).data.user;
+
+    if (!user) {
+  alert("⚠️ Please login first");
+  navigate("/auth");
+  return;
+}
     
 
     if (!vehicleNumber.trim()) {
@@ -91,7 +97,7 @@ if (existingVehicle) {
           owner_name: ownerName.trim() || null,
           owner_email: ownerEmail.trim() || null,
           
-          user_id: user?.id,
+          user_id: user?.id || null,
         })
         .select()
         .single();
