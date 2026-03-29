@@ -47,8 +47,9 @@ export default function Register() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-      const user = (await supabase.auth.getUser()).data.user;
     e.preventDefault();
+    const user = (await supabase.auth.getUser()).data.user;
+    
 
     if (!vehicleNumber.trim()) {
       alert('Please enter vehicle number');
@@ -68,8 +69,20 @@ export default function Register() {
 
     try {
       const uniqueQrCode = generateUniqueCode();
+      const { data: existingVehicle } = await supabase
+  .from("vehicles")
+  .select("*")
+  .eq("vehicle_number", vehicleNumber.trim())
+  .maybeSingle();
+
+if (existingVehicle) {
+  alert("🚗 Vehicle already registered!");
+  navigate(`/scan/${existingVehicle.qr_code}`);
+  return;
+}
 
       const { data: vehicle, error: vehicleError } = await supabase
+      
         .from('vehicles')
         .insert({
 
@@ -83,28 +96,10 @@ export default function Register() {
         .select()
         .single();
 
-      if (vehicleError) {
-  // 🔥 duplicate vehicle case
-  if (vehicleError.message.includes("duplicate")) {
-    alert("🚗 Vehicle already registered!");
+        console.log("USER:", user);
+console.log("VEHICLE ERROR:", vehicleError);
+console.log("VEHICLE DATA:", vehicle);
 
-    // 👉 existing vehicle fetch karo
-    const { data: existing } = await supabase
-      .from("vehicles")
-      .select("*")
-      .eq("vehicle_number", vehicleNumber.trim())
-      .single();
-
-    if (existing) {
-      // 👉 redirect karo scan page pe
-      navigate(`/scan/${existing.qr_code}`);
-    }
-
-    return;
-  }
-
-  throw vehicleError;
-}
 
       const contactsToInsert = validContacts.map(contact => ({
         vehicle_id: vehicle.id,
@@ -181,7 +176,7 @@ export default function Register() {
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
             <p className="text-sm text-blue-800">
-              <strong>Important:</strong> Print this QR code and place it on your vehicle's windshield or dashboard for easy scanning.
+              <strong>Important : </strong> This is your QR code , Print it & paste this in your vehicle windsheild or dashboard for easy scanning.
             </p>
           </div>
 

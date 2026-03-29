@@ -243,10 +243,11 @@ export default function Emergency() {
         <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
           <h4 className="font-medium text-slate-800 mb-2 text-sm">Important Instructions</h4>
           <ul className="text-xs text-slate-600 space-y-2 leading-relaxed">
-            <li>• Call emergency services immediately if life-threatening</li>
-            <li>• Stay calm and ensure your own safety first</li>
+            <li>• hello use our vehicle qr code to quiclky access important details of owner </li>
+            <li>• Only use this system in genuine case only </li>
+            <li>• If the situation is serious , call emergency service provided in our system</li>
             <li>• Provide clear location details when calling for help</li>
-            <li>• Do not move injured persons unless absolutely necessary</li>
+            
           </ul>
         </div>
       </div>

@@ -38,10 +38,10 @@ function App() {
 
             <Route path="/auth" element={<Auth />} />
           </Routes>
-        </div>
+      
         <BottomNav />
       </div>
-
+  </div>
     </BrowserRouter>
   );
 }
