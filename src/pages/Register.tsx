@@ -106,6 +106,12 @@ if (existingVehicle) {
 console.log("VEHICLE ERROR:", vehicleError);
 console.log("VEHICLE DATA:", vehicle);
 
+if (vehicleError || !vehicle) {
+  console.log("INSERT FAILED:", vehicleError);
+  alert("Vehicle insert failed");
+  return;
+}
+
 
       const contactsToInsert = validContacts.map(contact => ({
         vehicle_id: vehicle.id,
